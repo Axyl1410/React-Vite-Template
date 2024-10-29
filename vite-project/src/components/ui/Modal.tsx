@@ -8,6 +8,39 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
+/**
+ * A modal component that can be used to display a dialog
+ * that can be closed by clicking anywhere outside of it.
+ *
+ * The modal is a fixed positioned element that takes up the whole
+ * screen and it is rendered outside of the normal render tree.
+ *
+ * The component accepts the following props:
+ *
+ * - `isOpen`: a boolean that indicates whether the modal is open or not
+ * - `onClose`: a callback function that is called when the modal is closed
+ * - `children`: a React node that will be rendered as the content of the modal
+ *
+ * The component will also add a `dark` class to the body element when the modal is open
+ * and remove it when the modal is closed.
+ *
+ * The component uses the `react-dom` package to create a portal
+ * to the body element.
+ *
+ * The component uses the `framer-motion` package to animate the modal.
+ *
+ * The component is styled using Tailwind CSS.
+ *
+ * The component is a controlled component, meaning that the parent component
+ * is responsible for managing the state of the modal.
+ *
+ * The component is a functional component.
+ *
+ * The component is exported as a default export.
+ *
+ * @example
+ * <Modal isOpen={isOpen} onClose={handleClose} children={<YourComponent />} />
+ */
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   return ReactDOM.createPortal(
     <>

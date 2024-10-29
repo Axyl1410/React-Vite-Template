@@ -2,6 +2,18 @@ import { Switch } from "@headlessui/react";
 import React, { useEffect, useState } from "react";
 import { cn } from "../../lib/utils";
 
+/**
+ * A toggle button to switch between light and dark theme.
+ *
+ * The toggle button is a Switch component from `@headlessui/react`.
+ * The component is initialized with the theme stored in local storage.
+ * The component will save the selected theme in local storage.
+ *
+ * The component will also add/remove the theme class to/from the root element.
+ * The theme class will be used to style the application.
+ *
+ * The component does not accept any props.
+ */
 const ThemeToggle: React.FC = () => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
 

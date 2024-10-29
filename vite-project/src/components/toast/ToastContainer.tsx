@@ -8,6 +8,24 @@ interface ToastMessage {
   type?: "success" | "error" | "info";
 }
 
+/**
+ * A container that renders a list of toast messages. It can be used as a
+ * standalone component, or as part of a larger context that provides the
+ * addToast and removeToast functions as props.
+ *
+ * @example
+ * <ToastContainer />
+ *
+ * @example
+ * <ToastProvider>
+ *   <ToastContainer />
+ * </ToastProvider>
+ *
+ * @param addToast
+ * @example
+ * const { addToast } = useToast();
+ * addToast("This is a success message", "success");
+ */
 const ToastContainer: React.FC = () => {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 

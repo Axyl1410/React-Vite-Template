@@ -17,6 +17,22 @@ interface TooltipProps {
   classname?: string;
 }
 
+/**
+ * A tooltip component that displays additional information when a user hovers
+ * over the child element. The tooltip can be positioned in various directions
+ * relative to the child element, specified by the `direction` prop.
+ *
+ * @param {TooltipProps} props - The properties object.
+ * @param {"top" | "left" | "right" | "bottom" | "top-left" | "top-right" | "bottom-left" | "bottom-right"} props.direction - The direction in which to display the tooltip.
+ * @param {React.ReactNode} props.content - The content to be displayed within the tooltip.
+ * @param {React.ReactNode} props.children - The element that triggers the tooltip on hover.
+ * @param {string} [props.classname] - Additional classname for styling the tooltip wrapper.
+ *
+ * @example
+ * <Tooltip direction="top" content="This is a tooltip">
+ *   <button>Hover me</button>
+ * </Tooltip>
+ */
 const Tooltip: React.FC<TooltipProps> = ({
   direction,
   content,

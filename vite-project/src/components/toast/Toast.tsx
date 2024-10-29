@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-import { cn } from "../lib/utils";
+import { cn } from "../../lib/utils";
 
 interface ToastProps {
   message: string;
@@ -8,6 +8,14 @@ interface ToastProps {
   onClose: () => void;
 }
 
+/**
+ * A toast component that can be used to display a message
+ * with a given type (success, error, info) and an onClose
+ * callback.
+ *
+ * @param {{ message: string; type?: "success" | "error" | "info"; onClose: () => void }} props
+ * @returns {React.ReactElement}
+ */
 const Toast: React.FC<ToastProps> = ({ message, type = "info", onClose }) => {
   const getTypeStyles = () => {
     switch (type) {
