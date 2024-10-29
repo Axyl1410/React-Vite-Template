@@ -18,6 +18,12 @@ interface ToastProviderProps {
   children: React.ReactNode;
 }
 
+/**
+ * A provider for the ToastContext. This component should be used to wrap the
+ * root of your application. It provides the `addToast` function to the context,
+ * which can be used to add toasts to the toast list. The toast list is
+ * displayed as a stack of toasts in the top-right of the screen.
+ */
 export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
