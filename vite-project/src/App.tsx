@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Loading from "./components/common/loading/Loading";
 import { ToastProvider } from "./components/toast/ToastContext";
@@ -6,10 +6,10 @@ import { ToastProvider } from "./components/toast/ToastContext";
 const Home = lazy(() => import("./pages/Home"));
 
 export default function App() {
-  (function () {
+  useEffect(() => {
     const savedTheme = localStorage.getItem("theme") || "light";
     document.documentElement.classList.add(savedTheme);
-  })();
+  }, []);
 
   const router = createBrowserRouter([
     {
