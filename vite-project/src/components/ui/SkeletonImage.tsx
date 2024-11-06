@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { cn } from "../../lib/utils";
-import styles from "./SkeletonImage.module.css";
 
 interface SkeletonImageProps {
   src: string;
@@ -26,8 +25,10 @@ export default function SkeletonImage({
 
   return (
     <div
-      className={cn(styles.loadable, pulsing ? styles.pulse : "")}
-      style={{ width: width, background: "#ccc" }}
+      className={cn(
+        `overflow-hidden bg-[#ccc] shadow-md w-${width}`,
+        pulsing ? "animate-pulse" : "",
+      )}
     >
       <motion.img
         initial={{ height: "0px", opacity: 0 }}
@@ -41,7 +42,7 @@ export default function SkeletonImage({
         }}
         onLoad={imageLoaded}
         src={src}
-        className={className}
+        className={cn("block", className)}
       />
     </div>
   );

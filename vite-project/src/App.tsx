@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Loading from "./components/common/loading/Loading";
+import ScrollToTop from "./components/common/ScrollToTop";
 import { ToastProvider } from "./components/toast/ToastContext";
 
 const Home = lazy(() => import("./pages/Home"));
@@ -11,17 +12,13 @@ export default function App() {
     document.documentElement.classList.add(savedTheme);
   }, []);
 
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Home />,
-    },
-  ]);
-
   return (
     <ToastProvider>
       <Suspense fallback={<Loading />}>
-        <RouterProvider router={router}></RouterProvider>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
       </Suspense>
     </ToastProvider>
   );
