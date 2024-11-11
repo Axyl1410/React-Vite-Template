@@ -1,8 +1,8 @@
 import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import Loading from "./components/common/loading/Loading";
+import Loading from "./components/common/Loading";
 import ScrollToTop from "./components/common/ScrollToTop";
-import { ToastProvider } from "./components/toast/ToastContext";
+import { ToastProvider } from "./components/ui/ToastContext";
 
 const Home = lazy(() => import("./pages/Home"));
 

@@ -1,7 +1,7 @@
 import React from "react";
-import { cn } from "../../../lib/utils";
-import Transition from "../Transition";
+import { cn } from "../../lib/utils";
 import styles from "./Loading.module.css";
+import Transition from "./Transition";
 
 const Loading: React.FC = () => {
   return (
