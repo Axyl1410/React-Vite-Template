@@ -1,4 +1,4 @@
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { createContext, useCallback, useContext, useState } from "react";
 import Toast from "./Toast";
 
@@ -18,20 +18,20 @@ interface ToastProviderProps {
   children: React.ReactNode;
 }
 
-/**
- * A provider for the ToastContext. This component should be used to wrap the
- * root of your application. It provides the `addToast` function to the context,
- * which can be used to add toasts to the toast list. The toast list is
- * displayed as a stack of toasts in the top-right of the screen.
- */
 export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
   const addToast = useCallback(
     (message: string, type?: "success" | "error" | "info") => {
       const id = Date.now();
-      setToasts((prevToasts) => [...prevToasts, { id, message, type }]);
-      setTimeout(() => removeToast(id), 3000);
+      setToasts((prevToasts) => {
+        const newToasts = [...prevToasts, { id, message, type }];
+        if (newToasts.length > 4) {
+          newToasts.shift();
+        }
+        return newToasts;
+      });
+      setTimeout(() => removeToast(id), 4000);
     },
     [],
   );
@@ -43,15 +43,22 @@ export const ToastProvider: React.FC<ToastProviderProps> = ({ children }) => {
   return (
     <ToastContext.Provider value={{ addToast }}>
       {children}
-      <div className="fixed right-2 top-2 z-20 space-y-2 sm:right-4 sm:top-4">
+      <div className="fixed left-5 top-6 z-50 flex flex-col gap-2">
         <AnimatePresence>
           {toasts.map((toast) => (
-            <Toast
+            <motion.div
               key={toast.id}
-              message={toast.message}
-              type={toast.type}
-              onClose={() => removeToast(toast.id)}
-            />
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Toast
+                message={toast.message}
+                type={toast.type}
+                onClose={() => removeToast(toast.id)}
+              />
+            </motion.div>
           ))}
         </AnimatePresence>
       </div>
