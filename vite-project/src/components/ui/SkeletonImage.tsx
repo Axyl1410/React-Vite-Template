@@ -26,8 +26,10 @@ export default function SkeletonImage({
   return (
     <div
       className={cn(
-        `overflow-hidden bg-[#ccc] shadow-md w-${width}`,
+        `overflow-hidden bg-[#ccc] shadow-md`,
         pulsing ? "animate-pulse" : "",
+        className,
+        `w-[${width}] h-[${height}]`,
       )}
     >
       <motion.img
